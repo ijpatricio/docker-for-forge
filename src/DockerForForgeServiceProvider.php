@@ -1,10 +1,11 @@
 <?php
 
-namespace Finuras\Vise;
+namespace Ijpatricio\DockerForForge;
 
+use Ijpatricio\DockerForForge\Commands\InstallCommand;
 use Illuminate\Support\ServiceProvider;
 
-class ViseServiceProvider extends ServiceProvider
+class DockerForForgeServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -23,10 +24,12 @@ class ViseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../stubs' => base_path(),
-            ], 'vise');
+        if (! $this->app->runningInConsole()) {
+            return;
         }
+
+        $this->commands([
+            InstallCommand::class,
+        ]);
     }
 }
