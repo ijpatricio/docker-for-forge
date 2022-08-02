@@ -13,7 +13,6 @@ RUN composer install --no-dev --ignore-platform-reqs --no-interaction
 
 FROM ubuntu:22.04
 
-ARG WWWGROUP
 ARG POSTGRES_VERSION=14
 
 WORKDIR /var/www/html
