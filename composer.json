@@ -1,0 +1,17 @@
+{
+  "name": "ijpatricio/docker-for-forge",
+  "description": "Docker utilities to use Docker within Forge deployed servers.",
+  "autoload": {
+    "psr-4": {
+      "Ijpatricio\\DockerForForge\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": "Ijpatricio\\DockerForForge\\DockerForForgeServiceProvider"
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "^7.6"
+  }
+}

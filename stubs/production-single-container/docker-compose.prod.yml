@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  webapp_name:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/production/Dockerfile
+    image: webapp_vendor/webapp_name:${TAG:-latest}
+    volumes:
+      - ./.env:/var/www/html/.env
+      - ./storage/app:/var/www/html/storage/app
+      - ./storage/logs:/var/www/html/storage/logs
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.webapp_name.entrypoints=https
+      - traefik.http.routers.webapp_name.rule=Host(`${TRAEFIK_HOST:-webapp_domain}`)
+      - traefik.http.routers.webapp_name.service=webapp_name
+      - traefik.http.services.webapp_name.loadbalancer.server.port=80
+      - traefik.http.routers.webapp_name.tls.certresolver=leresolver
