@@ -20,16 +20,8 @@ function default {
     help
 }
 
-function build {
-    docker-compose -f docker-compose.prod.yml build
-}
-
-function liftAgain {
-    docker-compose -f docker-compose.prod.yml up -d
-}
-
-function migrate {
-    docker-compose -f docker-compose.prod.yml exec fax-machine bash -c "php artisan migrate --force"
+function forgeCmd {
+    docker-compose exec frey_backend bash -c "gosu forge bash -c \"$@\""
 }
 
 TIMEFORMAT="Task completed in %3lR"
