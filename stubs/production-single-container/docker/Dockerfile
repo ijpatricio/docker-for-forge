@@ -67,6 +67,9 @@ COPY ./docker/production/php.ini /etc/php/8.1/cli/conf.d/99-php.ini
 # SERVICES
 COPY ./docker/production/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Improvements of life
+RUN echo -e "\nalias a='php artisan'" >> ~/.bashrc
+
 # PROJECT FILES OWNERSHIP AND PERMISSIONS
 RUN chown -R forge:forge /var/www
 COPY --from=build_composer --chown=forge:forge /app /var/www/html
