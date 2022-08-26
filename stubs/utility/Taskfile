@@ -21,7 +21,7 @@ function default {
 }
 
 function forgeCmd {
-    docker-compose exec frey_backend bash -c "gosu forge bash -c \"$@\""
+    docker-compose exec service_name bash -c "gosu forge bash -c \"$@\""
 }
 
 TIMEFORMAT="Task completed in %3lR"
