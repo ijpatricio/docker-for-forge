@@ -4,9 +4,8 @@
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# Focal = Ubuntu 20.04
-# Run `lsb_release -cs` to discover yours if not 20.04
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+UBUNTU_VERSION=lsb_release -cs
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $UBUNTU_VERSION stable"
 apt-cache policy docker-ce
 apt install -y docker-ce
 systemctl status docker
